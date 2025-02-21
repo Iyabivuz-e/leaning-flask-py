@@ -1,0 +1,19 @@
+from config import db
+
+# Creating all the dababase models/schemas that we need.
+# In this case, we only need one to store our contact
+
+class Contact(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    first_ame = db.Column(db.String(80), unique=True, nullable=False)
+    last_ame = db.Column(db.String(80), unique=True, nullable=False)
+    email = db.Column(db.String(120), unique=True, nullable=False)
+    
+    def to_json(self):
+        return {
+            "id": self.id,
+            "firstName": self.first_name,
+            "lastName": self.last_name,
+            "email": self.email
+        }
+        
